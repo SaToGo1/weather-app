@@ -1,9 +1,16 @@
-import {apiCallPromise, apiCallAwait} from './APIFunctions.js'
+import {apiCallPromise, apiCallAwait, createActualWeatherObject} from './APIFunctions.js'
 
 let dataPromiseBarcelona = apiCallPromise('barcelona');
 
 let dataPromiseBarna2 = apiCallAwait('barcelona');
+let dataPromiseNY = apiCallAwait('new york');
 
+let weatherData = createActualWeatherObject(dataPromiseBarcelona)
+.then((test) => {
+    console.log('test')
+    console.log(test);
+});
+/*
 dataPromiseBarna2.then((data)=>{
 
     let date = dateBuilder(data.timezone)
@@ -27,25 +34,6 @@ dataPromiseBarna2.then((data)=>{
     console.log(`weather: ${data.weather[0].description}`);
 })
 
-const dateBuilder = (timezone) => {
-   
-    const nowInLocalTime = Date.now()  + 1000 * (timezone / 3600);
-    const millitime = new Date(nowInLocalTime);
-    const dateFormat = millitime.toLocaleString();
-
-    let day = millitime.toLocaleString("en-US", {weekday: "long"});
-    let month = millitime.toLocaleString("en-US", {month: "long"}); 
-    let date = millitime.toLocaleString("en-US", {day: "numeric"});
-    let year = millitime.toLocaleString("en-US", {year: "numeric"}); 
-    let hours = millitime.toLocaleString("en-US", {hour: "numeric"}); 
-    let minutes = millitime.toLocaleString("en-US", {minute: "numeric"});
-
-    return `${day} ${date} ${month} ${year} ${hours}:${minutes}`;
-}
-
-
-let dataPromiseNY = apiCallAwait('new york');
-
 dataPromiseNY.then((data)=>{
 
     let date = dateBuilder(data.timezone)
@@ -68,3 +56,4 @@ dataPromiseNY.then((data)=>{
 
     console.log(`weather: ${data.weather[0].description}`);
 })
+*/

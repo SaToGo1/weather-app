@@ -28,35 +28,30 @@ export function apiCallPromise(cityName){
 
     let link = baseLink + city + `&` + units + `&` + key;
 
+    console.log(link);
     let data = fetch(link)
     .then((response) => response.json())
-    .then((data) => data );
+    .then((data) => data )
 
     return data;
 }
 
-const dateBuilder = (timezone) => {
-   
-    const nowInLocalTime = Date.now()  + 1000 * (timezone / 3600);
-    const millitime = new Date(nowInLocalTime);
-    const dateFormat = millitime.toLocaleString();
+const dateBuilder = (dt, timezone) => {
+    // - 3600 summer time?.
+    let millitime = new Date(dt*1000 + timezone*1000 - 3600*1000);
 
     let day = millitime.toLocaleString("en-US", {weekday: "long"});
     let month = millitime.toLocaleString("en-US", {month: "long"}); 
     let date = millitime.toLocaleString("en-US", {day: "numeric"});
     let year = millitime.toLocaleString("en-US", {year: "numeric"});
-    let hours = millitime.toLocaleString("en-US", {hour: "numeric"}); 
+    let hours = millitime.toLocaleString("en-US", {hour: "2-digit"}); 
+    hours = hours.slice(0, 2);
     let minutes = millitime.toLocaleString("en-US", {minute: "numeric"}); 
-    //let hours = millitime.getHours();
-    //let minutes = millitime.getMinutes();
-    /*if(minutes < 10){
-        minutes = `0${minutes}`;
-    }*/
 
     return {
             full: `${day} ${date} ${month} ${year}`,
             hours: `${hours}:${minutes}`,
-            dayHour: `${day}, ${hours}:${minutes}`
+            dayHour: `${day} ${date}, ${hours}:${minutes}`
     }
 }
 
@@ -64,7 +59,7 @@ const dateBuilder = (timezone) => {
 export function createActualWeatherObject(promise){
     let weatherDataPromise = promise.then((data) => {
         let weatherData = { };
-        let date = dateBuilder(data.timezone)
+        let date = dateBuilder(data.dt, data.timezone);
 
         //Header
         weatherData.name = data.name;

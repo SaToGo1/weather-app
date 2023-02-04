@@ -54,6 +54,9 @@ searchButton.addEventListener('click', ()=>{
         .then((data) => {
             logData(data);
         })
+        .catch((er) => {
+            alert('city not found')
+        })
     }else{
         alert('introduce the name of a city');
     }

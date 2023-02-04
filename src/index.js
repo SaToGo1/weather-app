@@ -1,5 +1,10 @@
 import {apiCallPromise, apiCallAwait, createActualWeatherObject} from './APIFunctions.js'
 
+/*
+#
+#   API
+#
+*/
 let dataPromiseBarcelona = apiCallPromise('barcelona');
 
 let dataPromiseBarna2 = apiCallAwait('barcelona');
@@ -8,56 +13,26 @@ let dataPromiseLondon = apiCallPromise('london');
 
 dataPromiseLondon.then((data) => {
     console.log(data);
-})
-let weatherData = createActualWeatherObject(dataPromiseBarcelona)
-.then((test) => {
-    console.log('test')
-    console.log(test);
 });
-/*
-dataPromiseBarna2.then((data)=>{
 
-    let date = dateBuilder(data.timezone)
-
-    console.log('last dance testing')
+let weatherData = createActualWeatherObject(dataPromiseBarcelona)
+.then((data) => {
+    console.log('test')
     console.log(data);
 
+    logData(data);
+});
+
+const logData = (data) => {
     console.log(`City: ${data.name}`);
 
-    console.log(`Humidity: ${data.main.humidity} %`);
-    console.log(`wind speed: ${data.wind.speed} m/sec`);
-    console.log(`pressure: ${data.main.pressure} hPa`);
+    console.log(`temperature: ${data.temperature} *C` );
+    console.log(`temperature feels like: ${data.tmpFeelsLike} *C` );
 
-    console.log(`temperature: ${data.main.temp} *C` );
-    console.log(`temperature feels like: ${data.main.feels_like} *C` );
+    console.log(`Humidity: ${data.humidity} %`);
+    console.log(`wind speed: ${data.windSpeed} m/sec`);
+    console.log(`clouds: ${data.clouds}`);
 
-    console.log(`clouds: ${data.clouds.all} %`);
-
-    console.log(`timezone: ${date}`);
-
-    console.log(`weather: ${data.weather[0].description}`);
-})
-
-dataPromiseNY.then((data)=>{
-
-    let date = dateBuilder(data.timezone)
-
-    console.log('last dance testing')
-    console.log(data);
-
-    console.log(`City: ${data.name}`);
-
-    console.log(`Humidity: ${data.main.humidity} %`);
-    console.log(`wind speed: ${data.wind.speed} m/sec`);
-    console.log(`pressure: ${data.main.pressure} hPa`);
-
-    console.log(`temperature: ${data.main.temp} *C` );
-    console.log(`temperature feels like: ${data.main.feels_like} *C` );
-
-    console.log(`clouds: ${data.clouds.all} %`);
-
-    console.log(`timezone: ${date}`);
-
-    console.log(`weather: ${data.weather[0].description}`);
-})
-*/
+    console.log(`time: ${data.date.dayHour}`);
+    console.log(`weather: ${data.weatherDescription}`);
+}

@@ -1,0 +1,45 @@
+*{
+    box-sizing: border-box;
+}
+
+html, body{
+    margin: 0;
+
+}
+
+.searchDiv{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 300px;
+    
+    padding: 5px 10px;
+    border: 1px solid #000;
+    border-radius: 20px;
+
+    display: flex;
+}
+
+.searchDiv:focus-within{
+    outline: 1px solid #00F;
+}
+
+.searchIcon{
+    width: 20px;
+}
+.searchIcon:hover{
+    cursor: pointer;
+}
+.searchIcon:active{
+    width: 22px;
+    height: 20px;
+}
+
+.searchDiv:target{
+    outline: 1px solid #00F;
+}
+
+.searchInput{
+    flex: 1;
+    border: none;
+    outline: none;
+}

@@ -8,6 +8,8 @@ html, body{
 }
 
 body{
+    width: 100vw;
+    height: 100vh;
     background: url(./img/clouds.jpg) #000;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -51,4 +53,68 @@ body{
     flex: 1;
     border: none;
     outline: none;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: grid;
+
+    grid-template-rows: 10% 40% 50%;
+}
+
+.maingrid{
+    border: 5px solid black;
+}
+
+/* #########################
+# HEADER
+# TOP ROW
+############################ */
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.actualTime{
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+
+    color: white;
+}
+
+/* #########################
+# MIDDLE ROW
+############################ */
+/* #########################
+# RIGHT SIDE
+############################ */
+.actualTime__rightSide{
+    border: 1px solid blue;
+    padding: 10%;
+}
+
+.temperature{
+    display: flex;
+    gap: 10px;
+}
+
+.temperatureImg{
+    min-width: 40px;
+    min-height: 40px;
+    border: 2px solid #FFF;
+}
+
+.temperatureText{
+    margin: 0;
+    font-size: 2em;
+}
+
+/* #########################
+# Left SIDE
+############################ */
+.actualTime__leftSide{
+    border: 1px solid blue;
+    padding: 10%;
 }

@@ -6,6 +6,13 @@ import {apiCallPromise, apiCallAwait, createActualWeatherObject} from './APIFunc
 #
 */
 let dataPromiseBarcelona = apiCallPromise('barcelona');
+createActualWeatherObject(dataPromiseBarcelona)
+.then((data) => {
+    console.log('Barcelona Base')
+    logData(data);
+
+    displayData(data, temperatureDOM);
+})
 
 let dataPromiseBarna2 = apiCallAwait('barcelona');
 let dataPromiseNY = apiCallAwait('new york');
@@ -48,11 +55,15 @@ const logData = (data) => {
 let searchButton = document.getElementById('searchButton');
 let searchInput = document.getElementById('searchInput');
 
+//Display data
+let temperatureDOM = document.getElementById('temperature') 
+
 searchButton.addEventListener('click', ()=>{
     if( searchInput.value.length > 0){     
         createActualWeatherObject(apiCallPromise(searchInput.value))
         .then((data) => {
             logData(data);
+            displayData(data, temperatureDOM);
         })
         .catch((er) => {
             alert('city not found')
@@ -61,3 +72,31 @@ searchButton.addEventListener('click', ()=>{
         alert('introduce the name of a city');
     }
 });
+
+
+const displayData = (data) => {
+    
+    temperatureDOM.value=`${data.temperature}°C`;
+    console.log(temperatureDOM);
+
+    displayTemperature(data.temperature)
+    displayHumidityWindClouds();
+    
+}
+
+const displayTemperature = (temp) => {
+    let tempImg = document.createElement('img');
+    let tempText = document.createElement('p');
+
+    tempImg.classList.add('temperatureImg');
+
+    tempText.classList.add('temperatureText');
+    tempText.textContent = `${temp}°C`;
+
+    temperatureDOM.append(tempImg);
+    temperatureDOM.append(tempText);
+}
+
+const displayHumidityWindClouds = () => {
+
+}

@@ -41,10 +41,14 @@ const dateBuilder = (timezone) => {
     let month = millitime.toLocaleString("en-US", {month: "long"}); 
     let date = millitime.toLocaleString("en-US", {day: "numeric"});
     let year = millitime.toLocaleString("en-US", {year: "numeric"}); 
-    let hours = millitime.toLocaleString("en-US", {hour: "numeric"}); 
+    let hours = millitime.getHours();
     let minutes = millitime.toLocaleString("en-US", {minute: "numeric"});
 
-    return `${day} ${date} ${month} ${year} ${hours}:${minutes}`;
+    return {
+            date: `${day} ${date} ${month} ${year}`,
+            hours: `${hours}:${minutes}`,
+            dayHour: `${day}, ${hours}:${minutes}`
+    }
 }
 
 

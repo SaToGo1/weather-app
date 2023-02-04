@@ -4,7 +4,11 @@ let dataPromiseBarcelona = apiCallPromise('barcelona');
 
 let dataPromiseBarna2 = apiCallAwait('barcelona');
 let dataPromiseNY = apiCallAwait('new york');
+let dataPromiseLondon = apiCallPromise('london');
 
+dataPromiseLondon.then((data) => {
+    console.log(data);
+})
 let weatherData = createActualWeatherObject(dataPromiseBarcelona)
 .then((test) => {
     console.log('test')

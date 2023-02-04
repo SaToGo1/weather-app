@@ -41,6 +41,9 @@ let searchInput = document.getElementById('searchInput');
 //Display data
 let temperatureDOM = document.getElementById('temperature');
 let humidityCloudsWindDOM = document.getElementById('humidity');
+let cityNameDOM = document.getElementById('cityName');
+let timeWeatherDOM = document.getElementById('timeWeatherData');
+
 
 searchButton.addEventListener('click', ()=>{
     if( searchInput.value.length > 0){     
@@ -63,8 +66,10 @@ const displayData = (data) => {
     temperatureDOM.value=`${data.temperature}°C`;
     console.log(temperatureDOM);
 
-    displayTemperature(data.temperature)
+    displayTemperature(data.temperature);
     displayHumidityWindClouds(data.humidity, data.clouds, data.windSpeed);
+    displayCityName(data.name);
+    displayTimeWeather(data.date.dayHour, data.weatherDescription);
     
 }
 
@@ -97,4 +102,27 @@ const displayHumidityWindClouds = (humidity, clouds, windSpeed) => {
     humidityCloudsWindDOM.append(humidityText);
     humidityCloudsWindDOM.append(cloudsText);
     humidityCloudsWindDOM.append(windSpeedText);
+}
+
+const displayCityName = (cityName) => {
+    let cityText = document.createElement('p');
+
+    cityText.classList.add('cityText');
+    cityText.textContent = `${cityName}`;
+
+    cityNameDOM.append(cityText);
+}
+
+const displayTimeWeather = (dayHour, weatherDescription) => {
+    let dayHourText = document.createElement('p');
+    let weatherDescriptionText = document.createElement('p');
+
+    dayHourText.classList.add('timeWeatherText');
+    weatherDescriptionText.classList.add('timeWeatherText');
+
+    dayHourText.textContent = `${dayHour}`;
+    weatherDescriptionText.textContent = `${weatherDescription}`;
+
+    timeWeatherDOM.append(dayHourText);
+    timeWeatherDOM.append(weatherDescriptionText);
 }

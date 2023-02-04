@@ -5,8 +5,7 @@ import {apiCallPromise, apiCallAwait, createActualWeatherObject} from './APIFunc
 #   API
 #
 */
-let dataPromiseBarcelona = apiCallPromise('barcelona');
-createActualWeatherObject(dataPromiseBarcelona)
+createActualWeatherObject(apiCallPromise('barcelona'))
 .then((data) => {
     console.log('Barcelona Base')
     logData(data);
@@ -14,22 +13,6 @@ createActualWeatherObject(dataPromiseBarcelona)
     displayData(data, temperatureDOM);
 })
 
-let dataPromiseBarna2 = apiCallAwait('barcelona');
-let dataPromiseNY = apiCallAwait('new york');
-let dataPromiseLondon = apiCallPromise('london');
-
-dataPromiseLondon.then((data) => {
-    console.log(data);
-});
-/*
-let weatherData = createActualWeatherObject(dataPromiseBarcelona)
-.then((data) => {
-    console.log('test')
-    console.log(data);
-
-    logData(data);
-})
-*/
 const logData = (data) => {
     console.log(`City: ${data.name}`);
 
@@ -56,7 +39,8 @@ let searchButton = document.getElementById('searchButton');
 let searchInput = document.getElementById('searchInput');
 
 //Display data
-let temperatureDOM = document.getElementById('temperature') 
+let temperatureDOM = document.getElementById('temperature');
+let humidityCloudsWindDOM = document.getElementById('humidity');
 
 searchButton.addEventListener('click', ()=>{
     if( searchInput.value.length > 0){     
@@ -80,7 +64,7 @@ const displayData = (data) => {
     console.log(temperatureDOM);
 
     displayTemperature(data.temperature)
-    displayHumidityWindClouds();
+    displayHumidityWindClouds(data.humidity, data.clouds, data.windSpeed);
     
 }
 
@@ -97,6 +81,20 @@ const displayTemperature = (temp) => {
     temperatureDOM.append(tempText);
 }
 
-const displayHumidityWindClouds = () => {
+const displayHumidityWindClouds = (humidity, clouds, windSpeed) => {
+    let humidityText = document.createElement('p');
+    let cloudsText = document.createElement('p');
+    let windSpeedText = document.createElement('p');
 
+    humidityText.classList.add('pText');
+    cloudsText.classList.add('pText');
+    windSpeedText.classList.add('pText');
+
+    humidityText.textContent = `Humidity: ${humidity}%`;
+    cloudsText.textContent = `clouds: ${clouds}%`;
+    windSpeedText.textContent = `wind speed: ${windSpeed}m/sec`;
+
+    humidityCloudsWindDOM.append(humidityText);
+    humidityCloudsWindDOM.append(cloudsText);
+    humidityCloudsWindDOM.append(windSpeedText);
 }

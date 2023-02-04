@@ -108,9 +108,17 @@ main {
 
 .temperatureText{
     margin: 0;
-    font-size: 2em;
+    font-size: 2.5em;
 }
 
+.humidity{
+    margin-top: 20px;
+}
+
+.pText {
+    margin: 0;
+    font-size: 1.2em;
+}
 /* #########################
 # Left SIDE
 ############################ */

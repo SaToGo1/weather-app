@@ -21,9 +21,13 @@ export async function apiCallAwait(cityName){
 }
 //same function using async/await and using Promise for training both.
 export function apiCallPromise(cityName){
-    let link = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=ea5bc7b59ef81a149e4999e17ee60551`;
-    console.log(`city name: ${cityName}`)
-    console.log(link)
+    let baseLink = `https://api.openweathermap.org/data/2.5/weather?`;
+    let city = `q=${cityName}`;
+    let key = `appid=ea5bc7b59ef81a149e4999e17ee60551`;
+    let units = `units=${UNITS_METRIC}`;
+
+    let link = baseLink + city + `&` + units + `&` + key;
+
     let data = fetch(link)
     .then((response) => response.json())
     .then((data) => data );
@@ -40,9 +44,14 @@ const dateBuilder = (timezone) => {
     let day = millitime.toLocaleString("en-US", {weekday: "long"});
     let month = millitime.toLocaleString("en-US", {month: "long"}); 
     let date = millitime.toLocaleString("en-US", {day: "numeric"});
-    let year = millitime.toLocaleString("en-US", {year: "numeric"}); 
-    let hours = millitime.getHours();
-    let minutes = millitime.toLocaleString("en-US", {minute: "numeric"});
+    let year = millitime.toLocaleString("en-US", {year: "numeric"});
+    let hours = millitime.toLocaleString("en-US", {hour: "numeric"}); 
+    let minutes = millitime.toLocaleString("en-US", {minute: "numeric"}); 
+    //let hours = millitime.getHours();
+    //let minutes = millitime.getMinutes();
+    /*if(minutes < 10){
+        minutes = `0${minutes}`;
+    }*/
 
     return {
             full: `${day} ${date} ${month} ${year}`,

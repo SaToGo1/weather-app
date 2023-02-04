@@ -4,7 +4,7 @@
 
 html, body{
     margin: 0;
-
+    
 }
 
 .searchDiv{
@@ -17,6 +17,7 @@ html, body{
     border-radius: 20px;
 
     display: flex;
+    gap: 10px;
 }
 
 .searchDiv:focus-within{

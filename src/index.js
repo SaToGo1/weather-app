@@ -50,6 +50,7 @@ searchButton.addEventListener('click', ()=>{
         createActualWeatherObject(apiCallPromise(searchInput.value))
         .then((data) => {
             logData(data);
+
             displayData(data, temperatureDOM);
         })
         .catch((er) => {
@@ -66,6 +67,7 @@ const displayData = (data) => {
     temperatureDOM.value=`${data.temperature}°C`;
     console.log(temperatureDOM);
 
+    
     displayTemperature(data.temperature);
     displayHumidityWindClouds(data.humidity, data.clouds, data.windSpeed);
     displayCityName(data.name);

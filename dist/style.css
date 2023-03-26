@@ -63,10 +63,6 @@ main {
     grid-template-rows: 10% 40% 50%;
 }
 
-.maingrid{
-    border: 5px solid black;
-}
-
 /* #########################
 # HEADER
 # TOP ROW
@@ -87,12 +83,16 @@ main {
 /* #########################
 # MIDDLE ROW
 ############################ */
+.actualTime__center {
+    background-color: #0004;
+}
+
 /* #########################
 # RIGHT SIDE
 ############################ */
 .actualTime__rightSide{
-    border: 1px solid blue;
     padding: 10%;
+    background-color: #0004;
 }
 
 .rightside__temperature{
@@ -123,8 +123,8 @@ main {
 # Left SIDE
 ############################ */
 .actualTime__leftSide{
-    border: 1px solid blue;
     padding: 10%;
+    background-color: #0004;
 }
 
 .leftside__cityName{

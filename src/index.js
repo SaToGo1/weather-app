@@ -67,7 +67,7 @@ const displayData = (data) => {
     temperatureDOM.value=`${data.temperature}°C`;
     console.log(temperatureDOM);
 
-    
+    eraseDisplay();
     displayTemperature(data.temperature);
     displayHumidityWindClouds(data.humidity, data.clouds, data.windSpeed);
     displayCityName(data.name);
@@ -127,4 +127,12 @@ const displayTimeWeather = (dayHour, weatherDescription) => {
 
     timeWeatherDOM.append(dayHourText);
     timeWeatherDOM.append(weatherDescriptionText);
+}
+
+const eraseDisplay = () => {
+    temperatureDOM.innerHTML = " ";
+    humidityCloudsWindDOM.innerHTML = " ";
+    cityNameDOM.innerHTML = " ";
+    timeWeatherDOM.innerHTML = " ";
+
 }

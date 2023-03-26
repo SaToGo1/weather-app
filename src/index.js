@@ -1,4 +1,7 @@
 import {apiCallPromise, apiCallAwait, createActualWeatherObject} from './APIFunctions.js'
+import lowTemp from './img/tempLow.svg';
+import lowHigh from './img/tempHigh.svg';
+import Temp from './img/temp.svg';
 
 /*
 #
@@ -76,9 +79,9 @@ const displayData = (data) => {
 }
 
 const displayTemperature = (temp) => {
-    let tempImg = document.createElement('img');
     let tempText = document.createElement('p');
 
+    let tempImg = temperatureImage(temp);
     tempImg.classList.add('temperatureImg');
 
     tempText.classList.add('temperatureText');
@@ -135,4 +138,20 @@ const eraseDisplay = () => {
     cityNameDOM.innerHTML = " ";
     timeWeatherDOM.innerHTML = " ";
 
+} 
+
+const temperatureImage = (temp) => {
+    const myIcon = new Image();
+    console.log(" ")
+    console.log(`temp here is: ${temp}`)
+    console.log(" ")
+    if(temp > 25){
+        myIcon.src = highTemp;
+    }else if(temp < 15){
+        myIcon.src = lowTemp;
+    }else {
+        myIcon.src = Temp;
+    }
+
+    return myIcon;
 }

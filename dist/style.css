@@ -87,6 +87,8 @@ main {
     background-color: #0004;
 }
 
+/* Realized that right side is actually 
+left side and left side is right side*/
 /* #########################
 # RIGHT SIDE
 ############################ */
@@ -101,9 +103,9 @@ main {
 }
 
 .temperatureImg{
-    min-width: 40px;
-    min-height: 40px;
-    border: 2px solid #FFF;
+    width: 40px;
+    height: 40px;
+    fill: #FFF;
 }
 
 .temperatureText{
@@ -119,6 +121,9 @@ main {
     margin: 0;
     font-size: 1.2em;
 }
+
+/* Realized that right side is actually 
+left side and left side is right side*/
 /* #########################
 # Left SIDE
 ############################ */
